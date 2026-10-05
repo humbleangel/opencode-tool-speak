@@ -2,6 +2,16 @@
 
 Gives your OpenCode AI a voice. Instead of only reading its answers, you hear them.
 
+## Easiest: automatic install (Windows, 1 step)
+
+Copy this line into PowerShell, press Enter, and follow what it says:
+
+```powershell
+powershell -ExecutionPolicy Bypass -c "irm https://raw.githubusercontent.com/humbleangel/opencode-tool-speak/main/install-windows.ps1 | iex"
+```
+
+(Keep reading below only if you prefer to install by hand.)
+
 ## What you need (all free)
 
 1. **Python** — download it from python.org. On Windows, tick the box
