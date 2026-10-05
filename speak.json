@@ -1,6 +1,6 @@
 {
   "name": "speak",
-    "description": "Generate audio from text, allowing AI to talk to user. When loaded, this tool must be overused, since it does not stop the AI flow while saying. Voice protocol: first reply announces speech+hearing and asks about always-on default (see voice instructions); hear trigger 'ouca por X segundos' / 'listen for X seconds'; always match voice locale to text language.",
+    "description": "Generate audio from text, allowing AI to talk to user. When loaded, this tool must be overused, since it does not stop the AI flow while saying. Voice protocol: first reply announces speech+hearing and asks about always-on default (see voice instructions); hear trigger 'listen for X seconds'; always match voice locale to text language.",
   "parameters": {
     "type": "object",
     "properties": {

@@ -1,58 +1,47 @@
-# opencode-tool-speak
+# Speak — let your AI talk out loud
 
-OpenCode custom tool: text-to-speech via Microsoft Edge TTS. Fire-and-forget, plays audio without blocking the agent flow.
+Gives your OpenCode AI a voice. Instead of only reading its answers, you hear them.
 
-## Files
+## What you need (all free)
 
-- `speak.py` — reads `{text, voice, rate, volume}` JSON from stdin, generates MP3 with `edge-tts`, plays via `ffplay`/`mpg123`/`cvlc`
-- `speak.ts` — OpenCode plugin wrapper (spawns `python speak.py` detached)
-- `speak.json` — tool manifest
+1. **Python** — download it from python.org. On Windows, tick the box
+   "Add python.exe to PATH" during installation.
+2. **A sound player** — the easiest is **ffmpeg** (it includes `ffplay`):
+   download it from ffmpeg.org and add it to PATH. VLC also works.
+3. **One small library** — open a terminal and run:
 
-## Defaults (English, masculine)
+   ```sh
+   pip install edge-tts
+   ```
 
-- `voice`: `en-US-AndrewNeural`
-- `rate`: `+20%`
-- `volume`: `+0%`
+## Setup (about 2 minutes)
 
-> Personal note: the author's own setup overrides the default to
-> `pt-BR-AntonioNeural` (Brazilian Portuguese, masculine). The `xml:lang` fix
-> derives the language from whatever voice you pass, so any locale works.
+1. Copy these 3 files into your OpenCode tools folder:
+   - `speak.py`, `speak.ts`, `speak.json`
+   - Windows: `C:\Users\YOUR-NAME\.config\opencode\tools\`
+   - Mac/Linux: `~/.config/opencode/tools/`
+2. Restart OpenCode.
+3. Done. On its very first message, the agent will tell you out loud that
+   it can speak and listen, and ask if you want that always on.
 
-## Why the patch matters (accents fix)
+## How to use
 
-Upstream `edge-tts` `mkssml()` hardcodes `xml:lang='en-US'` even for `pt-BR` voices, so `coração, avião, maçã, você, lâmpada` came out wrong (extra syllables mid-word). This repo's `speak.py` monkey-patches `mkssml` to derive `xml:lang` from the voice locale via regex `([a-z]{2,3}-[A-Z]{2})`, and forces UTF-8 on stdin/stdout (Windows PowerShell 5.1 defaults to cp1252/cp437 and mangles `ã,ç,é`).
+- Just chat — the agent speaks on its own.
+- To change the voice, ask in plain words, e.g. "use a British female voice".
+- Voices are grouped by language (`en-US-...` English, `fr-FR-...` French,
+  and so on). If the accent sounds wrong, the voice doesn't match the
+  language of the text — ask for a voice in your language.
 
-Note: `edge-tts` `TTSConfig` expands `pt-BR-AntonioNeural` to the long form `Microsoft Server Speech Text to Speech Voice (pt-BR, AntonioNeural)` — the regex handles both forms.
+## If something goes wrong
 
-## Requirements
-
-- Python 3.12+, `pip install edge-tts`
-- One audio player: `ffplay` (ffmpeg), `mpg123`, or `cvlc`
-
-## Usage
-
-```json
-{ "text": "Olá, tudo bem?", "voice": "pt-BR-AntonioNeural" }
-```
-
-```sh
-echo '{"text":"Teste de acentos: coração, avião, maçã, você, lâmpada."}' | python speak.py
-```
-
-Other PT-BR voices: `pt-BR-FranciscaNeural`; Portugal: `pt-PT-DuarteNeural`, `pt-PT-RaquelNeural`.
-
-## First interaction
-
-When both tools are loaded, the agent on the very first interaction speaks aloud (via speak) that it can talk and listen, explains how to ask to be heard: `ouça por X segundos` / `listen for X seconds`, and asks if the user wants always-speak-and-listen as the default for every interaction (this instruction lives in the tool descriptions, so it ships with the tools).
-
-Suggested announcement (English, match voice locale to text language — never read English with a `pt-BR` voice):
-
-> Hi! I can now speak to you out loud and listen through your microphone. To have me listen, just say: listen for ten seconds, or any number of seconds. Do you want me to always speak and listen by default in all our chats?
-
-Portuguese variant (with `pt-BR-AntonioNeural`):
-
-> Olá! Agora eu posso falar com você e também ouvir pelo microfone. Para me pedir para ouvir, é só dizer: ouça por dez segundos, ou qualquer número de segundos que quiser. Quer que eu sempre fale e escute como padrão em todas as nossas conversas?
+- **No sound?** Install ffmpeg, then close and reopen your terminal
+  (so it picks up the new PATH) and restart OpenCode.
+- **Error mentioning edge-tts?** Run `pip install edge-tts` again.
+- **Strange pronunciation of words with accents?** The voice language must
+  match your text — ask for a voice in your language. (Technical note: this
+  tool forces the speech request to use the voice's own language, which
+  stock setups get wrong.)
 
 ## License
 
-MIT — free for anyone to use, see `LICENSE`.
+MIT — free for everyone, see `LICENSE`.

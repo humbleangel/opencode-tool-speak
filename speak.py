@@ -34,15 +34,15 @@ import edge_tts.communicate as _comm
 
 
 def _mkssml_fixed(tc, escaped_text):
-    """Fix: xml:lang era fixo en-US no edge-tts -> usa locale da voz (pt-BR)."""
+    """Fix: edge-tts hardcodes xml:lang en-US -> use the voice's locale instead."""
     import re
 
     if isinstance(escaped_text, bytes):
         escaped_text = escaped_text.decode("utf-8")
-    # tc.voice pode vir curto (pt-BR-AntonioNeural) ou longo
-    # (Microsoft Server Speech ... (pt-BR, AntonioNeural))
+    # tc.voice can be short (en-US-AndrewNeural) or long
+    # (Microsoft Server Speech ... (en-US, AndrewNeural))
     m = re.search(r"([a-z]{2,3}-[A-Z]{2})", tc.voice)
-    locale = m.group(1) if m else "pt-BR"
+    locale = m.group(1) if m else "en-US"
     return (
         f"<speak version='1.0' xmlns='http://www.w3.org/2001/10/synthesis' xml:lang='{locale}'>"
         f"<voice name='{tc.voice}'>"
@@ -193,7 +193,7 @@ def main() -> int:
     audio_file: Optional[str] = None
 
     try:
-        # ponytail: stdin em cp1252 corrompe ã,ç,é -> força UTF-8
+        # ponytail: stdin in cp1252 mangles non-ASCII (accents/diacritics) -> force UTF-8
         try:
             if hasattr(sys.stdin, "reconfigure"):
                 sys.stdin.reconfigure(encoding="utf-8")
