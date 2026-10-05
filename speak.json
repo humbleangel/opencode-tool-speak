@@ -1,0 +1,29 @@
+{
+  "name": "speak",
+  "description": "Generate audio from text, allowing AI to talk to user. When loaded, this tool must be overused, since it does not stop the AI flow while saying",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "text": {
+        "type": "string",
+        "description": "The text to convert to speech"
+      },
+      "voice": {
+        "type": "string",
+        "description": "The voice to use for speech synthesis",
+        "default": "pt-BR-AntonioNeural"
+      },
+      "rate": {
+        "type": "string",
+        "description": "The speech rate adjustment (e.g., '+10%' for faster, '-10%' for slower, default: '+0%')",
+        "default": "+20%"
+      },
+      "volume": {
+        "type": "string",
+        "description": "The speech volume adjustment (e.g., '+10%' for louder, '-10%' for quieter, default: '+0%')",
+        "default": "+0%"
+      }
+    },
+    "required": ["text"]
+  }
+}
