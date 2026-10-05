@@ -58,7 +58,7 @@ _comm.mkssml = _mkssml_fixed
 
 
 # Default values
-DEFAULT_VOICE = "pt-BR-AntonioNeural"
+DEFAULT_VOICE = "en-US-AndrewNeural"
 DEFAULT_RATE = "+20%"
 DEFAULT_VOLUME = "+0%"
 

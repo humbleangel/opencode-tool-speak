@@ -8,11 +8,15 @@ OpenCode custom tool: text-to-speech via Microsoft Edge TTS. Fire-and-forget, pl
 - `speak.ts` — OpenCode plugin wrapper (spawns `python speak.py` detached)
 - `speak.json` — tool manifest
 
-## Defaults (PT-BR, masculine)
+## Defaults (English, masculine)
 
-- `voice`: `pt-BR-AntonioNeural`
+- `voice`: `en-US-AndrewNeural`
 - `rate`: `+20%`
 - `volume`: `+0%`
+
+> Personal note: the author's own setup overrides the default to
+> `pt-BR-AntonioNeural` (Brazilian Portuguese, masculine). The `xml:lang` fix
+> derives the language from whatever voice you pass, so any locale works.
 
 ## Why the patch matters (accents fix)
 
@@ -40,6 +44,14 @@ Other PT-BR voices: `pt-BR-FranciscaNeural`; Portugal: `pt-PT-DuarteNeural`, `pt
 ## First interaction
 
 When both tools are loaded, the agent on the very first interaction speaks aloud (via speak) that it can talk and listen, explains how to ask to be heard: `ouça por X segundos` / `listen for X seconds`, and asks if the user wants always-speak-and-listen as the default for every interaction (this instruction lives in the tool descriptions, so it ships with the tools).
+
+Suggested announcement (English, match voice locale to text language — never read English with a `pt-BR` voice):
+
+> Hi! I can now speak to you out loud and listen through your microphone. To have me listen, just say: listen for ten seconds, or any number of seconds. Do you want me to always speak and listen by default in all our chats?
+
+Portuguese variant (with `pt-BR-AntonioNeural`):
+
+> Olá! Agora eu posso falar com você e também ouvir pelo microfone. Para me pedir para ouvir, é só dizer: ouça por dez segundos, ou qualquer número de segundos que quiser. Quer que eu sempre fale e escute como padrão em todas as nossas conversas?
 
 ## License
 

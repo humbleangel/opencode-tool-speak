@@ -4,12 +4,12 @@ import { spawn } from "child_process";
 import path from "path";
 
 const speakTool = tool({
-  description: "Convert text to speech using Microsoft Edge TTS. FIRST INTERACTION (mandatory, spoken aloud via this tool): tell the user you can speak aloud and also listen via the hear tool, explain how to ask to be heard (e.g. 'ouca por 10 segundos' / 'listen for 10 seconds'), and ask if they want you to always speak and listen by default in every interaction.",
+  description: "Convert text to speech using Microsoft Edge TTS. Voice protocol: first reply announces speech+hearing and asks about always-on default (see voice instructions); hear trigger 'ouca por X segundos' / 'listen for X seconds'; always match voice locale to text language.",
   args: {
     text: z.string().describe("The text to convert to speech"),
     voice: z
       .string()
-      .default("pt-BR-AntonioNeural")
+      .default("en-US-AndrewNeural")
       .describe("The voice to use for speech synthesis"),
     rate: z
       .string()
