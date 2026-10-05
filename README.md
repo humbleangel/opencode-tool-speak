@@ -36,3 +36,11 @@ echo '{"text":"Teste de acentos: coração, avião, maçã, você, lâmpada."}' 
 ```
 
 Other PT-BR voices: `pt-BR-FranciscaNeural`; Portugal: `pt-PT-DuarteNeural`, `pt-PT-RaquelNeural`.
+
+## First interaction
+
+When both tools are loaded, the agent tells the user on the first interaction that it can speak aloud and listen via microphone, and explains how to ask to be heard: `ouça por X segundos` / `listen for X seconds` (this instruction lives in the tool descriptions, so it ships with the tools).
+
+## License
+
+MIT — free for anyone to use, see `LICENSE`.
