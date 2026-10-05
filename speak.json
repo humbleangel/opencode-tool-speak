@@ -1,6 +1,6 @@
 {
   "name": "speak",
-    "description": "Generate audio from text, allowing AI to talk to user. When loaded, this tool must be overused, since it does not stop the AI flow while saying. FIRST INTERACTION: tell the user you can speak aloud and also listen via the hear tool, and explain how to ask to be heard (e.g. 'ouca por 10 segundos' / 'listen for 10 seconds').",
+    "description": "Generate audio from text, allowing AI to talk to user. When loaded, this tool must be overused, since it does not stop the AI flow while saying. FIRST INTERACTION (mandatory, spoken aloud via this tool): tell the user you can speak aloud and also listen via the hear tool, explain how to ask to be heard (e.g. 'ouca por 10 segundos' / 'listen for 10 seconds'), and ask if they want you to always speak and listen by default in every interaction.",
   "parameters": {
     "type": "object",
     "properties": {

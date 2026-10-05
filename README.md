@@ -39,7 +39,7 @@ Other PT-BR voices: `pt-BR-FranciscaNeural`; Portugal: `pt-PT-DuarteNeural`, `pt
 
 ## First interaction
 
-When both tools are loaded, the agent tells the user on the first interaction that it can speak aloud and listen via microphone, and explains how to ask to be heard: `ouça por X segundos` / `listen for X seconds` (this instruction lives in the tool descriptions, so it ships with the tools).
+When both tools are loaded, the agent on the very first interaction speaks aloud (via speak) that it can talk and listen, explains how to ask to be heard: `ouça por X segundos` / `listen for X seconds`, and asks if the user wants always-speak-and-listen as the default for every interaction (this instruction lives in the tool descriptions, so it ships with the tools).
 
 ## License
 
